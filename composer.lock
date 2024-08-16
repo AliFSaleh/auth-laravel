@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c491b8531eec05ba41a11d9276a5749",
+    "content-hash": "822a365c5135d4797476bfe7f7e440e7",
     "packages": [
         {
             "name": "brick/math",
@@ -1049,6 +1049,46 @@
                 }
             ],
             "time": "2023-12-03T19:50:20+00:00"
+        },
+        {
+            "name": "jawa/api",
+            "version": "v1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Jawa98/api-package.git",
+                "reference": "4403ef4c325e392c982060ee3a4a61f46cd0d8bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Jawa98/api-package/zipball/4403ef4c325e392c982060ee3a4a61f46cd0d8bf",
+                "reference": "4403ef4c325e392c982060ee3a4a61f46cd0d8bf",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Jawa\\Api\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "jawa5",
+                    "email": "shriba.jawa5@gmail.com"
+                }
+            ],
+            "description": "This package provide basic middleware and error handler  for laravel api project",
+            "support": {
+                "issues": "https://github.com/Jawa98/api-package/issues",
+                "source": "https://github.com/Jawa98/api-package/tree/v1.0.9"
+            },
+            "time": "2023-07-25T09:05:41+00:00"
         },
         {
             "name": "laravel/framework",
