@@ -10,7 +10,7 @@ use Illuminate\Routing\Controller as BaseController;
  * @OA\Info(title="API", version="1.0")
  *
  *  @OA\Server(
- *      url="https://api.test.com/api/",
+ *      url="https://test.robquiz.com/api/",
  *  )
  *  @OA\Server(
  *      url="http://127.0.0.1:8000/api",

@@ -6,7 +6,7 @@
     },
     "servers": [
         {
-            "url": "https://api.test.com/api/"
+            "url": "https://test.robquiz.com/api/"
         },
         {
             "url": "http://127.0.0.1:8000/api"
