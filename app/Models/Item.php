@@ -11,5 +11,6 @@ class Item extends Model
 
     protected $fillable = [
         'image',
+        'is_slider_item',
     ];
 }

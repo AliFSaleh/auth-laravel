@@ -76,6 +76,21 @@
                 ],
                 "description": "get all items",
                 "operationId": "getItems",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "slider",
+                                "not_slider",
+                                "all"
+                            ]
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation"
@@ -99,6 +114,13 @@
                                 "properties": {
                                     "image": {
                                         "type": "file"
+                                    },
+                                    "is_slider_item": {
+                                        "type": "integer",
+                                        "enum": [
+                                            0,
+                                            1
+                                        ]
                                     }
                                 },
                                 "type": "object"

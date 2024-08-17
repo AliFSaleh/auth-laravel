@@ -19,6 +19,12 @@ class ItemController extends Controller
      * @OA\get(
      * path="/items",
      * tags={"User - Items"},
+     * @OA\Parameter(
+     *    in="query",
+     *    name="type",
+     *    required=false,
+     *    @OA\Schema(type="string", enum={"slider","not_slider","all"}),
+     * ),
      * description="get all items",
      * operationId="getItems",
      * @OA\Response(
@@ -27,9 +33,17 @@ class ItemController extends Controller
      *  ),
      *  )
      */
-    public function index()
+    public function index(Request $request)
     {
-        $q = Item::Query();
+        $request->validate([
+            'type'   => ['string', 'in:slider,not_slider,all'],
+        ]);
+        $q = Item::query();
+
+        if($request->type == 'slider')
+            $q->where('is_slider_item', true);
+        if($request->type == 'not_slider')
+            $q->where('is_slider_item', false);
 
         $items = $q->get();
         return ItemResource::collection($items);
@@ -48,6 +62,7 @@ class ItemController extends Controller
      *           @OA\Schema(
      *              required={"image"},
      *              @OA\Property(property="image", type="file"),
+     *              @OA\Property(property="is_slider_item", type="integer", enum={0,1}),
      *           )
      *       )
      *),
@@ -61,7 +76,8 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image'       => ['required','image'],
+            'image'             => ['required','image'],
+            'is_slider_item'    => ['required','boolean'],
         ]);
 
         if ($request->file('image')) {
@@ -71,7 +87,8 @@ class ItemController extends Controller
         }
 
         $item = Item::create([
-            'image'      =>  $imagePath,
+            'image'             =>  $imagePath,
+            'is_slider_item'    =>  $request->is_slider_item,
         ]);
 
         return response()->json(new ItemResource($item), 201);
@@ -134,7 +151,8 @@ class ItemController extends Controller
     public function update(Request $request, Item $item)
     {
         $request->validate([
-            'image'      => ['required'],
+            'image'               => ['required'],
+            'is_slider_item'      => ['required', 'boolean'],
         ]);
 
         if(($request->image == $item->image)){
@@ -147,6 +165,7 @@ class ItemController extends Controller
         }
 
         $item->image = $imagePath;
+        $item->is_slider_item = $request->is_slider_item;
 
         $item->save();
 
