@@ -62,6 +62,7 @@ class ItemController extends Controller
      *           @OA\Schema(
      *              required={"image"},
      *              @OA\Property(property="image", type="file"),
+     *              @OA\Property(property="title", type="string"),
      *              @OA\Property(property="is_slider_item", type="integer", enum={0,1}),
      *           )
      *       )
@@ -78,6 +79,7 @@ class ItemController extends Controller
         $request->validate([
             'image'             => ['required','image'],
             'is_slider_item'    => ['required','boolean'],
+            'title'             => ['nullable', 'string'],
         ]);
 
         if ($request->file('image')) {
@@ -88,6 +90,7 @@ class ItemController extends Controller
 
         $item = Item::create([
             'image'             =>  $imagePath,
+            'title'             =>  $request->title,
             'is_slider_item'    =>  $request->is_slider_item,
         ]);
 
@@ -152,6 +155,7 @@ class ItemController extends Controller
     {
         $request->validate([
             'image'               => ['required'],
+            'title'               => ['nullable', 'string'],
             'is_slider_item'      => ['required', 'boolean'],
         ]);
 
@@ -165,6 +169,7 @@ class ItemController extends Controller
         }
 
         $item->image = $imagePath;
+        $item->title = $request->title;
         $item->is_slider_item = $request->is_slider_item;
 
         $item->save();
